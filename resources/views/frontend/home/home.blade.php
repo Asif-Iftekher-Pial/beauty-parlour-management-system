@@ -1,6 +1,6 @@
 @extends('frontend.master.master')
 @section('front_main')
-@include('frontend.layouts.errorAndSuccessMessage')
+    @include('frontend.layouts.errorAndSuccessMessage')
     <!-- banner and header -->
     <div class="banner jarallax" id="home" style="margin-top: 0">
         <img class="jarallax-img" src="{{ asset('frontend/images/22.jpg') }}" alt="">
@@ -72,21 +72,34 @@
             </div>
             <div class="pricing-grids-info">
 
-                @if ($services->count() > 0)
+                @if (count($services) > 0)
                     @foreach ($services as $service)
                         <div class="pricing-grid grid-one" style="margin: 5px;">
                             <div class="w3ls-top" style="padding-top: 0">
-                               <img style="width: 225px;height: 115px;" src="{{ asset('backend/images/service/'.$service->image) }}" alt="" srcset="">
+                                <img style="width: 225px;height: 115px;"
+                                    src="{{ asset('backend/images/service/' . $service->image) }}" alt=""
+                                    srcset="">
                             </div>
                             <div class="w3ls-bottom">
                                 <ul class="count">
-                                    <li style="margin-top: 0"><h4 style="margin: 0">{{ substr_replace($service->name, '...', 15) }}</h4></li>
-                                    <li style="margin-top: 2px ; padding-top:0px; text-align:justify">{{ substr_replace($service->description, '...', 100) }}</li>
-                                    
+                                    <li style="margin-top: 0">
+                                        <h4 style="margin: 0"><a
+                                                href="{{ route('serviceDetail', $service->id) }}">{{ substr_replace($service->name, '...', 15) }}</a>
+                                        </h4>
+                                    </li>
+                                    <li style="margin-top: 2px ; padding-top:0px; text-align:justify;max-height: 86px;">
+                                        {{ substr_replace($service->description, '...', 100) }}</li>
+
                                 </ul>
-                                <h4 style="margin-top: 2px"> {{ $service->price }}<span class="sup">₱</span> </h4>
+                                <h4 style="margin-top: 20px"> ₱ {{ $service->price }}<span class="sup"></span> </h4>
                                 <div class="more" style="margin-top:0">
-                                    <a style="margin-top:0" href="contact.html">Contact Now</a>
+                                    @auth
+                                        <button type="submit" class="btn btn-success" style="margin-top: 20px">Make
+                                            Appointment</button>
+                                    @else
+                                        <a href="{{ route('loginPage') }}" class="btn btn-danger btn-sm"
+                                            style="margin-top: 20px">Login</a>
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -97,6 +110,10 @@
 
 
                 <div class="clearfix"> </div>
+                <div class="text-center " style="margin-top: 20px">
+                <a href="{{ route('allServices') }}" class="btn btn-sm btn-success">See More</a>
+
+                </div>
                 <!--End-slider-script-->
             </div>
         </div>

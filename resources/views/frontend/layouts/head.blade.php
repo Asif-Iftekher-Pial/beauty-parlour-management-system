@@ -33,5 +33,5 @@
         rel="stylesheet">
     <!--// web-fonts -->
     <link rel="stylesheet" href="{{ asset('frontend/custom.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('backend/assets/dataTable/dataTable.min.css') }}">
 </head>

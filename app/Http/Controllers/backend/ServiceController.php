@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Contact;
 use App\Models\Service;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -124,5 +126,37 @@ class ServiceController extends Controller
             $getData->delete();
             return back()->with('error','service deleted successfully!');
         }
+    }
+
+
+    public function allAppointments(){
+        $appointments = Appointment::with('services','clients')->orderBy('appointment_date','desc')->get();
+        return view('backend.partials.appointments.allAppointments',compact('appointments'));
+    }
+
+
+    public function confirmService($id){
+        $payment = Appointment::where('id', $id)->first();
+        $payment->update([
+            'payment_status' =>'paid'
+        ]);
+        return back()->with('message','service delivered and payment received!');
+    }
+    public function deleteService($id){
+        $payment = Appointment::where('id', $id)->first();
+        $payment->delete();
+        return back()->with('error','Appointment deleted!');
+    }
+
+    public function allMessages(){
+        $messages = Contact::get();
+        return view('backend.partials.messages.messages',compact('messages'));
+    }
+
+    public function replyMessages($id){
+        $contact = Contact::findOrFail($id);
+        
+        $contact->update(['status'=>'replied']);
+        return back()->with('message','Message reply sent!');
     }
 }

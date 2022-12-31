@@ -69,13 +69,14 @@ class AuthController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-
+        $updateData =  User::where('id',Auth::user()->id)->first();
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('Ymdhms') . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('backend/images/admin/'), $filename);
+            @unlink(public_path('backend/images/admin/'.$updateData->image));
         }
-        $updateData =  User::where('id',Auth::user()->id)->first();
+       
         $updateData->update([
             'image'=>$filename
         ]);

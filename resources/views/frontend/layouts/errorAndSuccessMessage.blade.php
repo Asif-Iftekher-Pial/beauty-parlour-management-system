@@ -4,7 +4,7 @@
 </div> --}}
 
 <div class="alert alert-success" role="alert" id="alert" style="margin-bottom: 0">
-    <strong>Well done!</strong>{{ session()->get('message') }}
+    <strong>Well done!   </strong>{{ session()->get('message') }}
    {{-- <strong>{{ session()->get('message') }}</strong>  --}}
 </div>
 @endif
@@ -14,7 +14,7 @@
     {{ session()->get('error') }}
 </div> --}}
 <div class="alert alert-danger" role="alert">
-    <strong>Oh snap!</strong>{{ session()->get('error') }}
+    <strong>Oh snap!   </strong>{{ session()->get('error') }}
 </div>
 @endif
 {{--  validation error message --}}

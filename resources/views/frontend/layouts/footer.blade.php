@@ -31,21 +31,29 @@
             <div class="col-md-4 w3layouts_footer_grid">
                 <h3>Recent <span>Works</span></h3>
                 <ul class="con_inner_text midimg">
-                    <li><a href="#"><img src="images/p2.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p2.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p3.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p3.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p4.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p4.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p5.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p5.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p6.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p6.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p7.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p7.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p8.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p8.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
-                    <li><a href="#"><img src="images/p9.jpg" alt="" class="img-responsive" /></a>
+                    <li><a href="#"><img src="{{ asset('frontend/images/p9.jpg') }}" alt=""
+                                class="img-responsive" /></a>
                     </li>
                 </ul>
 
@@ -138,6 +146,7 @@
 <!-- stats -->
 <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.countup.js') }}"></script>
+<script src="{{ asset('backend/assets/dataTable/dataTable.min.js') }}"></script>
 <script>
     $('.counter').countUp();
 </script>
@@ -151,5 +160,10 @@
     setTimeout(function() {
         $('#alert').slideUp();
     }, 4000);
-  </script>
+</script>
 
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>

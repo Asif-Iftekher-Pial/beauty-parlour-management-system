@@ -23,10 +23,10 @@
                         class="active"
                     @endif --}}
                     <li><a class="@if(Request::url() === route('allServices')) active @endif" href="{{ route('allServices') }}">Services</a></li>
-                    <li><a href="services.html">Appointment</a></li>
-                    <li style="width: 100px"><a href="contact.html">Contact</a></li>
+                    
+                    <li style="width: 190px"><a href="{{ route('contact') }}">Contact</a></li>
                     @auth
-                        <a><img style="width:45px;border-radius:50%"
+                        <a><img style="width:45px;border-radius:50%;height:45px"
                                 src="{{ asset('frontend/images/client/' . Auth::user()->image) }}" alt=""
                                 srcset="">
                         </a>
@@ -37,7 +37,9 @@
                                 aria-expanded="true">{{ Auth::user()->name }}<b class="caret"></b></a>
                             <ul class="dropdown-menu agile_short_dropdown">
 
-                                <li><a href="typography.html">My Profile</a></li>
+                                <li><a href="{{ route('myProfile') }}">My Profile</a></li>
+                                <li><a href="{{ route('myAppointment') }}">My Appointments</a></li>
+                                <li><a href="{{ route('contactList') }}">My Messages</a></li>
                                 <li><a href="{{ route('clientLogout') }}">Logout</a></li>
                             </ul>
                         </li>

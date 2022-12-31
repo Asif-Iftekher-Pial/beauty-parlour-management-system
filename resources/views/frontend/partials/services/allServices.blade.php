@@ -1,6 +1,6 @@
 @extends('frontend.master.master')
 @section('front_main')
-    <div class="practice-areas">
+    <div class="practice-areas" style="padding-bottom: 0;margin-bottom:10px">
         <div class="container">
             <div class="wthree_head_section">
                 <h3 class="w3l_header">Our <span>Services</span></h3>
@@ -9,27 +9,43 @@
             </div>
             <div class="agileinfo-top-grids">
 
-                @if ($allservices->count() > 0)
+                @if (count($allservices) > 0)
                     @foreach ($allservices as $item )
                     <div class="col-sm-4 wthree-top-grid">
                         <img style="height: 220px;" src="{{ asset('backend/images/service/'.$item->image) }}" class="img-responsive" alt="">
-                        <h4>{{ $item->name }}</h4>
+                        <h4> <a href="{{ route('serviceDetail', $item->id) }}">{{ $item->name }}</a> </h4>
                         <h4 style="color: black">{{ $item->price }} ₱</h4>
                         <p style="margin-bottom: 10px">{{ $item->description }}</p>
                         <div class="text-center">
-                            <a href="#" class="btn btn-sm btn-success ">appointment</a>
+                            <a href="{{ route('serviceDetail', $item->id) }}" class="btn btn-sm btn-success ">appointment</a>
                         </div>
                         
                     </div>
                     @endforeach
+                    <div class="clearfix"> </div>
+                   
 
-                    {{ $allservices->links() }}
+                    
+                    <div class="text-center">
+                        {{ $allservices->links('vendor.pagination.custom') }}
+
+                        {{-- <ul class="pagination pagination-lg">
+                            <li class="disabled"><a href="#"><i class="fa fa-angle-left">«</i></a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right">»</i></a></li>
+                        </ul> --}}
+                    </div>
+                    
                 @else
                     <p>No services found</p>
                 @endif
                 
                
-                <div class="clearfix"> </div>
+                
             </div>
 
             
